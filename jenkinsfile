@@ -1,30 +1,20 @@
-pipeline {
+pipeline{
     agent any
-
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
+    stages{
+        stage("Build Master"){
+            when{
+                branch 'master'
+            }
+            steps{
+                echo 'Building Master'
             }
         }
-        stage('Build') {
-            steps {
-                echo 'Building'
+        stage("Build Dev"){
+            when{
+                branch 'dev'
             }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'DEPLOYING'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing'
-            }
-        }
-        stage('Release') {
-            steps {
-                echo 'Releasing'
+            steps{
+                echo "Building Dev"
             }
         }
     }
